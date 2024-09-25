@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Meteo Moderna</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            transition: background-color 0.5s ease;
+        }
+        .weather-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #666;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #notte {
+            background-color: #2c3e50;
+            margin-left: 10px;
+        }
+        #notte:hover {
+            background-color: #34495e;
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-container">
+        <h1>Meteo Oggi</h1>
+        <p id="weather"></p>
+        <p id="humidity"></p>
+        <p id="precipitation"></p>
+        <button onclick="updateWeather()">Aggiorna Meteo</button>
+        <button id="notte" onclick="attivaModalitaNotte()">NOTTE</button>
+    </div>
+
+    <script>
+        function updateWeather() {
+            const weatherConditions = ['Soleggiato', 'Piovoso', 'Nevoso', 'Nuvoloso', 'Ventoso'];
+            const weather = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
+            const humidity = Math.floor(Math.random() * 100);
+            const precipitation = Math.floor(Math.random() * 100);
+
+            document.getElementById('weather').textContent = `Condizioni: ${weather}`;
+            document.getElementById('humidity').textContent = `Umidità: ${humidity}%`;
+            document.getElementById('precipitation').textContent = `Probabilità di pioggia: ${precipitation}%`;
+        }
+
+        function attivaModalitaNotte() {
+            document.body.style.backgroundColor = '#1a237e';
+            setTimeout(() => {
+                document.body.style.backgroundColor = '#f0f0f0';
+            }, 5000);
+        }
+
+        // Inizializza il meteo al caricamento della pagina
+        updateWeather();
+    </script>
+</body>
+</html>
